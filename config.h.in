@@ -1,0 +1,2 @@
+#define dot_VERSION_MAJOR @dot_VERSION_MAJOR@
+#define dot_VERSION_MINOR @dot_VERSION_MINOR@
