@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Commands/Command_Types.hpp"
+#include "Entities/Entity.hpp"
 
 class World : public sf::NonCopyable {
 public:

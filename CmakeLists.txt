@@ -17,7 +17,7 @@ configure_file(
 include_directories("${PROJECT_BINARY_DIR}")
 
 set(EXECUTABLE_NAME "TheAdventuresOfBlinky")
-add_executable(${EXECUTABLE_NAME} Source/Main.cpp Source/Game.cpp Source/World.cpp Source/Command_Empty.cpp Source/InputHandler.cpp)
+add_executable(${EXECUTABLE_NAME} Source/Main.cpp Source/Game.cpp Source/World.cpp Source/Utilities.cpp Source/Command_Empty.cpp Source/Command_Move.cpp Source/Entity_Character.cpp Source/Entity_Background.cpp Source/InputHandler.cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 

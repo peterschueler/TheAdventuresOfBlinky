@@ -1,7 +1,7 @@
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
 
-#include "../Entity.hpp"
+#include "../Entities/Entity.hpp"
 
 class Command {
 public:

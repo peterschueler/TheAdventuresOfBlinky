@@ -1,7 +1,7 @@
 #ifndef COMMAND_EMPTY_HPP
 #define COMMAND_EMPTY_HPP
 
-#include "Command_Types.hpp"
+#include "Command.hpp"
 
 class Command_Empty : public Command {
 public:
