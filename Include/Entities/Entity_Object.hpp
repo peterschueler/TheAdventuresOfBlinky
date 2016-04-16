@@ -8,6 +8,10 @@ public:
 	enum Type {
 		tree,
 		wall,
+		maze_straight_01,
+		maze_straight_02,
+		maze_corner,
+		maze_button_01,
 		stone,
 		typeCount
 	};

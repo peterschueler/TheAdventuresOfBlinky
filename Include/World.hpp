@@ -18,13 +18,15 @@ public:
 	void input(Command* command);
 	
 private:
+	void initWall();
 	void initMaze();
 
 private:
 	sf::RenderWindow& window;
 	
 	std::vector<std::unique_ptr<Entity> > entities;
-	std::vector<std::unique_ptr<Entity_Object> > mazeTiles;
+	std::vector<std::unique_ptr<Entity_Object> > tiles;
+	std::vector<std::unique_ptr<Entity_Object> > walls;
 };
 
 #endif
