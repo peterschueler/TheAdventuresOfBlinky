@@ -5,14 +5,21 @@
 
 class Entity_Character : public Entity {
 public:
-	Entity_Character();
+	enum Type {
+		player,
+		npc,
+		typeCount
+	};
+	
+public:
+	Entity_Character(Type type);
 	virtual void update(sf::Time delta);
 	virtual void setDirection(float vx, float vy);
+	virtual void animate();
 	
 	sf::FloatRect borders();
 	
 protected:
-	virtual void animate();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	
 	void attachTexture();
@@ -20,15 +27,18 @@ protected:
 private:
 	sf::Sprite sprite;
 	sf::Texture texture;
-	
 	sf::Vector2f direction;
+	
+	Type type;
 	
 private:
 	enum AnimationStep {
 		first_x,
 		second_x,
+		third_x,
 		first_y,
 		second_y,
+		third_y,
 		stepCount
 	};
 	AnimationStep steps;

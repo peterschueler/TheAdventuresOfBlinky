@@ -26,8 +26,8 @@ void Game::processInput() {
 		if (event.type == sf::Event::Closed) {
 			window.close();
 		}
+		world.input(handler.handleInput(event));
 	}
-	world.input(handler.handleInput(event));
 }
 
 void Game::update(sf::Time delta) {

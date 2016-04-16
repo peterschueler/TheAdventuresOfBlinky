@@ -9,11 +9,11 @@ public:
 	
 	// Yes, every entity can be moved in this world.
 	virtual void setDirection(float vx, float vy) = 0;
-	
-protected:
-	// helper function
 	virtual void animate() = 0;
+protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+	virtual void attachTexture() = 0;
+		;
 };
 
 #endif

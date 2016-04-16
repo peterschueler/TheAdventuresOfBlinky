@@ -3,7 +3,8 @@
 #include <iostream>
 
 void Command_Empty::execute(Entity& entity) {
-	std::cout << "do nothing for a while." << std::endl;
+// 	std::cout << "do nothing for a while." << std::endl;
+	entity.setDirection(0,0);
 }
 
 void Command_Empty::stop() {

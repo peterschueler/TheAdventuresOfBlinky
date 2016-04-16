@@ -11,13 +11,12 @@ public:
 	
 	virtual void update(sf::Time delta);
 	virtual void setDirection(float vx, float vy);
+	virtual void animate();
 	
 protected:
-	virtual void animate();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	
-private:
-	void setup();
+	void attachTexture();
 	
 private:
 	std::vector<sf::Sprite> tiles;

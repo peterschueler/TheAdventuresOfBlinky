@@ -5,7 +5,7 @@
 const unsigned int Entity_Background::sizeOfMap = 1024;
 
 Entity_Background::Entity_Background() {
-	setup();
+	attachTexture();
 }
 
 void Entity_Background::update(sf::Time delta) {
@@ -25,7 +25,7 @@ void Entity_Background::animate() {
 void Entity_Background::setDirection(float vx, float vy) {
 }
 
-void Entity_Background::setup() {
+void Entity_Background::attachTexture() {
 	sf::Texture texture;
 	if (texture.loadFromFile("Media/Textures/grass_01.png")) {
 		textures.push_back(texture);

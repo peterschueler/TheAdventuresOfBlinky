@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "Commands/Command_Types.hpp"
-#include "Entities/Entity.hpp"
+#include "Entities/Entity_Types.hpp"
 
 class World : public sf::NonCopyable {
 public:
@@ -18,9 +18,13 @@ public:
 	void input(Command* command);
 	
 private:
+	void initMaze();
+
+private:
 	sf::RenderWindow& window;
 	
 	std::vector<std::unique_ptr<Entity> > entities;
+	std::vector<std::unique_ptr<Entity_Object> > mazeTiles;
 };
 
 #endif
