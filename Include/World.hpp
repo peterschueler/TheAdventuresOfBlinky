@@ -7,6 +7,7 @@
 
 #include "Commands/Command_Types.hpp"
 #include "Entities/Entity_Types.hpp"
+#include "Maze.hpp"
 
 class World : public sf::NonCopyable {
 public:
@@ -16,17 +17,21 @@ public:
 	void draw();
 	
 	void input(Command* command);
-	
 private:
-	void initWall();
-	void initMaze();
+	void initMaze(unsigned int index);
+	void initTrees();
+	void checkCollision();
 
 private:
 	sf::RenderWindow& window;
 	
+	std::vector<std::unique_ptr<Entity_Background> > backgrounds;
 	std::vector<std::unique_ptr<Entity> > entities;
-	std::vector<std::unique_ptr<Entity_Object> > tiles;
-	std::vector<std::unique_ptr<Entity_Object> > walls;
+	std::vector<std::unique_ptr<Entity> > mazeAndWalls;
+	
+	Maze currentMaze;
+	Entity_Character* playerChar;
+	Entity_Character* monsterChar;
 };
 
 #endif

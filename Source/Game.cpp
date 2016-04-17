@@ -26,6 +26,9 @@ void Game::processInput() {
 		if (event.type == sf::Event::Closed) {
 			window.close();
 		}
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+			pause();
+		}
 		world.input(handler.handleInput(event));
 	}
 }
@@ -33,6 +36,14 @@ void Game::processInput() {
 void Game::update(sf::Time delta) {
 	if (!isPaused) {
 		world.update(delta);
+	}
+}
+
+void Game::pause() {
+	if (isPaused) {
+		isPaused = false;
+	} else {
+		isPaused = true;
 	}
 }
 

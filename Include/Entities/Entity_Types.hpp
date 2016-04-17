@@ -4,5 +4,6 @@
 #include "Entity_Background.hpp"
 #include "Entity_Character.hpp"
 #include "Entity_Object.hpp"
+#include "Entity_Maze_Tile.hpp"
 
 #endif

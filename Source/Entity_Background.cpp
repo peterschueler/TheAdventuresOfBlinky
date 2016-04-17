@@ -44,3 +44,6 @@ void Entity_Background::attachTexture() {
 	}
 }
 
+sf::FloatRect Entity_Background::borders() {
+	return sf::FloatRect();
+}

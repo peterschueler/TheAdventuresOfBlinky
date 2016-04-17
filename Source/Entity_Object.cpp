@@ -29,21 +29,6 @@ void Entity_Object::attachTexture() {
 		case tree:
 			filePath = "Media/Textures/tree_01.png";
 			break;
-		case maze_straight_01:
-			filePath = "Media/Textures/maze_straight_01.png";
-			break;
-		case maze_straight_02:
-			filePath = "Media/Textures/maze_straight_02.png";
-			break;
-		case maze_corner:
-			filePath = "media/Textures/maze_corner_01.png";
-			break;
-		case maze_button_01:
-			filePath = "Media/Textures/maze_button_01.png";
-			break;
-		case wall:
-			filePath = "Media/Textures/wall_01.png";
-			break;
 		case stone:
 			filePath = "Media/Textures/stone_01.png";
 			break;
@@ -53,4 +38,9 @@ void Entity_Object::attachTexture() {
 	} else {
 		std::cout << "No tree?" << std::endl;
 	}
+}
+
+sf::FloatRect Entity_Object::borders() {
+	sf::FloatRect bounds = getTransform().transformRect(sprite.getGlobalBounds());
+	return bounds;
 }

@@ -16,6 +16,7 @@ private:
 	void processInput();
 	void update(sf::Time dt);
 	void render();
+	void pause();
 	
 private:
 	sf::RenderWindow window;

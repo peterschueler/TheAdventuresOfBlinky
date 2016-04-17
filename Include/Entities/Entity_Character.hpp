@@ -7,7 +7,7 @@ class Entity_Character : public Entity {
 public:
 	enum Type {
 		player,
-		npc,
+		monster,
 		typeCount
 	};
 	

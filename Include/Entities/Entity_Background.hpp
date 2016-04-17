@@ -13,6 +13,8 @@ public:
 	virtual void setDirection(float vx, float vy);
 	virtual void animate();
 	
+	sf::FloatRect borders();
+	
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	
