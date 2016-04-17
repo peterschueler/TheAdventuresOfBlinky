@@ -22,6 +22,7 @@ private:
 	void initTrees();
 	void initMonsters();
 	void resetMonster(Entity_Character& monster);
+	void moveButton();
 	void checkCollision();
 
 private:
@@ -35,6 +36,11 @@ private:
 	Maze currentMaze;
 	Entity_Character* playerChar;
 	Entity_Character* bossMonster;
+	
+	Entity_Object* fireButton;
+	Entity_Object* swapButton;
+	
+	float timer;
 };
 
 #endif

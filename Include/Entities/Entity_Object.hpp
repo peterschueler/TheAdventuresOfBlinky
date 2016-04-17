@@ -8,6 +8,7 @@ public:
 	enum Type {
 		tree,
 		stone,
+		button,
 		typeCount
 	};
 	

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Entity_Character::Entity_Character(Type type) : sprite(), texture(), direction(), steps(AnimationStep::first_x), type(type), currentAppearance(true) {
+Entity_Character::Entity_Character(Type type) : sprite(), texture(), direction(), steps(AnimationStep::first_x), type(type), currentAppearance(true), transparencyValue(256) {
 	centerSprite(sprite);
 	
 	attachTexture();
@@ -31,9 +31,9 @@ void Entity_Character::attachTexture() {
 	}
 }
 
-void Entity_Character::swapAppearance() {
-	if (type == player || type == player_shifted) {
-		if (currentAppearance) {
+void Entity_Character::swapAppearance(unsigned int trigger) {
+	if (type == player || player_shifted) {
+		if (trigger == 0) {
 			if (texture.loadFromFile("Media/Textures/monster_grid.png")) {
 				sf::IntRect rect(0,0,32,32);
 				sprite.setTexture(texture);
@@ -42,7 +42,7 @@ void Entity_Character::swapAppearance() {
 				steps = first_x;
 				currentAppearance = false;
 			}
-		} else {
+		} else if (trigger == 1) {
 			if (texture.loadFromFile("Media/Textures/blinky_grid.png")) {
 				sf::IntRect rect(0,0,32,32);
 				sprite.setTexture(texture);
@@ -64,6 +64,16 @@ void Entity_Character::setDirection(float vx, float vy) {
 		direction.y = vy;
 		animate();
 	}
+}
+
+sf::Vector2f Entity_Character::getDirection() const {
+	return direction;
+}
+
+unsigned int Entity_Character::addTransparency(unsigned int value) {
+	transparencyValue -= value;
+	sprite.setColor(sf::Color(255, 255, 255, transparencyValue));
+	return transparencyValue;
 }
 
 void Entity_Character::draw(sf::RenderTarget& target, sf::RenderStates states) const {

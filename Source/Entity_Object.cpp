@@ -32,6 +32,9 @@ void Entity_Object::attachTexture() {
 		case stone:
 			filePath = "Media/Textures/stone_01.png";
 			break;
+		case button:
+			filePath = "Media/Textures/grass_button_01.png";
+			break;
 	}
 	if (texture.loadFromFile(filePath)) {
 		sprite.setTexture(texture);

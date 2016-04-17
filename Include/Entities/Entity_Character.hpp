@@ -15,11 +15,14 @@ public:
 	Entity_Character(Type type);
 	virtual void update(sf::Time delta);
 	virtual void setDirection(float vx, float vy);
+	sf::Vector2f getDirection() const;
 	virtual void animate();
+	
+	unsigned int addTransparency(unsigned int value);
 	
 	sf::FloatRect borders();
 	
-	void swapAppearance();
+	void swapAppearance(unsigned int trigger);
 	
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -30,6 +33,8 @@ private:
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Vector2f direction;
+	
+	unsigned int transparencyValue;
 	
 	Type type;
 	
