@@ -3,6 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-void centerSprite(sf::Sprite sprite);
+void centerSprite(sf::Sprite& sprite);
 
 #endif

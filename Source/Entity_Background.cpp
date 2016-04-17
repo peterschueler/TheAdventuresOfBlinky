@@ -22,6 +22,9 @@ void Entity_Background::draw(sf::RenderTarget& target, sf::RenderStates states) 
 void Entity_Background::animate() {
 }
 
+void Entity_Background::reset() {
+}
+
 void Entity_Background::setDirection(float vx, float vy) {
 }
 

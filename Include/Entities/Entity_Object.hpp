@@ -8,8 +8,8 @@ public:
 	enum Type {
 		tree,
 		stone,
-		button,
-		typeCount
+		button_fire,
+		button_swap,
 	};
 	
 public:
@@ -22,6 +22,8 @@ public:
 	virtual void animate();
 	
 	virtual sf::FloatRect borders();
+	
+	virtual void reset();
 
 private:
 	Type type;

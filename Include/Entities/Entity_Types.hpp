@@ -5,5 +5,6 @@
 #include "Entity_Character.hpp"
 #include "Entity_Object.hpp"
 #include "Entity_Maze_Tile.hpp"
+#include "Entity_TitleScreen.hpp"
 
 #endif

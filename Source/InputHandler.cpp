@@ -12,6 +12,8 @@ Command* InputHandler::handleInput(const sf::Event& event) {
 			return new Command_Move(-200.f, 0.f);
 		} else if (event.key.code == sf::Keyboard::Right) {
 			return new Command_Move(+200.f, 0.f);
+		} else if (event.key.code == sf::Keyboard::S) {
+			return new Command_Reset(true);
 		}
 	}
 	return new Command_Empty();

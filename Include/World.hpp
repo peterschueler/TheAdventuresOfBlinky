@@ -37,6 +37,8 @@ private:
 	Entity_Character* playerChar;
 	Entity_Character* bossMonster;
 	
+	Entity_Titlescreen *titleScreen;
+	
 	Entity_Object* fireButton;
 	Entity_Object* swapButton;
 	

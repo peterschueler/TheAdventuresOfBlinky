@@ -11,13 +11,13 @@ World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze
 	initTrees();
 	initMaze(0);
 	
-	std::unique_ptr<Entity_Object> button(new Entity_Object(Entity_Object::Type::button));
+	std::unique_ptr<Entity_Object> button(new Entity_Object(Entity_Object::Type::button_fire));
 	fireButton = button.get();
 	fireButton->setPosition(900, 1000);
 	fireButton->setScale(3.f, 3.f);
 	entities.push_back(std::move(button));
 	
-	std::unique_ptr<Entity_Object> sButton(new Entity_Object(Entity_Object::Type::button));
+	std::unique_ptr<Entity_Object> sButton(new Entity_Object(Entity_Object::Type::button_swap));
 	swapButton = sButton.get();
 	swapButton->setPosition(536, 64);
 	swapButton->setScale(2.f, 2.f);
@@ -27,9 +27,14 @@ World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze
 	playerChar = player.get();
 	playerChar->setPosition(32,470);
 	playerChar->setScale(2.f, 2.f);
-	entities.push_back(std::move(player));	
+	entities.push_back(std::move(player));
 	
 	initMonsters();
+	
+	std::unique_ptr<Entity_Titlescreen> title(new Entity_Titlescreen());
+	titleScreen = title.get();
+	titleScreen->setPosition(0,0);
+	entities.push_back(std::move(title));
 }
 
 void World::update(sf::Time delta) {
@@ -69,6 +74,7 @@ void World::draw() {
 void World::input(Command* command) {
 	checkCollision();
 	command->execute(*playerChar);
+	command->execute(*titleScreen);
 }
 
 void World::initMaze(unsigned int index) {
@@ -121,7 +127,7 @@ void World::checkCollision() {
 		playerChar->swapAppearance(1);
 	}
 	if (playerChar->borders().intersects(fireButton->borders())) {
-		if (bossMonster->addTransparency(3) >= 256) {
+		if (bossMonster->addTransparency(5) >= 256) {
 			std::cout << "You won!" << std::endl;
 		}
 	}

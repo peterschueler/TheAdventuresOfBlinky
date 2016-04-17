@@ -22,6 +22,8 @@ public:
 	
 	sf::FloatRect borders();
 	
+	virtual void reset();
+	
 	void swapAppearance(unsigned int trigger);
 	
 protected:

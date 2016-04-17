@@ -63,6 +63,9 @@ void Entity_Maze_Tile::attachTexture() {
 	}
 }
 
+void Entity_Maze_Tile::reset() {
+}
+
 void Entity_Maze_Tile::changeTexture(Type type) {
 	sf::IntRect rect;
 	switch (type._info) {

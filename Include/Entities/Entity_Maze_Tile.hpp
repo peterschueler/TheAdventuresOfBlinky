@@ -31,6 +31,8 @@ public:
 	
 	sf::FloatRect borders();
 	
+	virtual void reset();
+	
 	void setType(Entity_Maze_Tile::Type type);
 	void triggerButton();
 	

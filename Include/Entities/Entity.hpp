@@ -11,6 +11,8 @@ public:
 	virtual void setDirection(float vx, float vy) = 0;
 	virtual void animate() = 0;
 	
+	virtual void reset() = 0;
+	
 	virtual sf::FloatRect borders() = 0;
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;

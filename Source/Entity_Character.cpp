@@ -82,6 +82,9 @@ void Entity_Character::draw(sf::RenderTarget& target, sf::RenderStates states) c
 	target.draw(sprite, states);
 }
 
+void Entity_Character::reset() {
+}
+
 void Entity_Character::animate() {
  	if (type == monster || type == player_shifted) {
 		if (steps == first_x) {
