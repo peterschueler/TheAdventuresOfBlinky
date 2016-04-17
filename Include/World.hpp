@@ -20,6 +20,8 @@ public:
 private:
 	void initMaze(unsigned int index);
 	void initTrees();
+	void initMonsters();
+	void resetMonster(Entity_Character& monster);
 	void checkCollision();
 
 private:
@@ -27,11 +29,12 @@ private:
 	
 	std::vector<std::unique_ptr<Entity_Background> > backgrounds;
 	std::vector<std::unique_ptr<Entity> > entities;
+	std::vector<std::unique_ptr<Entity_Character> > monsters;
 	std::vector<std::unique_ptr<Entity> > mazeAndWalls;
 	
 	Maze currentMaze;
 	Entity_Character* playerChar;
-	Entity_Character* monsterChar;
+	Entity_Character* bossMonster;
 };
 
 #endif

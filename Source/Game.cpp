@@ -2,7 +2,7 @@
 
 const sf::Time Game::secondsFameRatio = sf::seconds(1.f/60.f);
 
-Game::Game() : window(sf::VideoMode(800,600), "The Adventures of Blinky"), world(window), handler() {
+Game::Game() : window(sf::VideoMode(800,600), "The Adventures of Blinky"), world(window), handler(), isPaused(true) {
 }
 
 void Game::run() {
@@ -25,6 +25,12 @@ void Game::processInput() {
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window.close();
+		} 
+		if (event.type == sf::Event::GainedFocus) {
+			pause();
+		}
+		if (event.type == sf::Event::LostFocus) {
+			pause();
 		}
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			pause();

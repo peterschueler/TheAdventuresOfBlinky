@@ -7,8 +7,8 @@ class Entity_Character : public Entity {
 public:
 	enum Type {
 		player,
+		player_shifted,
 		monster,
-		typeCount
 	};
 	
 public:
@@ -18,6 +18,8 @@ public:
 	virtual void animate();
 	
 	sf::FloatRect borders();
+	
+	void swapAppearance();
 	
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -30,6 +32,8 @@ private:
 	sf::Vector2f direction;
 	
 	Type type;
+	
+	bool currentAppearance;
 	
 private:
 	enum AnimationStep {
