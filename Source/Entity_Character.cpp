@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Entity_Character::Entity_Character(Type type) : sprite(), texture(), direction(), steps(AnimationStep::first_x), type(type), currentAppearance(true), transparencyValue(256) {
+Entity_Character::Entity_Character(Type type) : sprite(), texture(), direction(), steps(AnimationStep::first_x), type(type), currentAppearance(true), transparencyValue(256), resetter(false) {
 	centerSprite(sprite);
 	
 	attachTexture();
@@ -73,7 +73,12 @@ sf::Vector2f Entity_Character::getDirection() const {
 unsigned int Entity_Character::addTransparency(unsigned int value) {
 	transparencyValue -= value;
 	sprite.setColor(sf::Color(255, 255, 255, transparencyValue));
-	return transparencyValue;
+	return sprite.getColor().a;
+}
+
+void Entity_Character::resetTransparency() {
+	sprite.setColor(sf::Color(255,255,255,255));
+	transparencyValue = 0;
 }
 
 void Entity_Character::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -83,6 +88,17 @@ void Entity_Character::draw(sf::RenderTarget& target, sf::RenderStates states) c
 }
 
 void Entity_Character::reset() {
+	setPosition(32, 470);
+	swapAppearance(1);
+	resetter = true;
+}
+
+void Entity_Character::doneReset() {
+	resetter = false;
+}
+
+bool Entity_Character::wasReset() {
+	return resetter;
 }
 
 void Entity_Character::animate() {

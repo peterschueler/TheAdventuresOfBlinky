@@ -19,10 +19,14 @@ public:
 	virtual void animate();
 	
 	unsigned int addTransparency(unsigned int value);
+	void resetTransparency();
 	
 	sf::FloatRect borders();
 	
 	virtual void reset();
+	
+	void doneReset();
+	bool wasReset();
 	
 	void swapAppearance(unsigned int trigger);
 	
@@ -41,6 +45,8 @@ private:
 	Type type;
 	
 	bool currentAppearance;
+	
+	bool resetter;
 	
 private:
 	enum AnimationStep {

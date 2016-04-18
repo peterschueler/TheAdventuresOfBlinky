@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 
-World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze(sf::FloatRect(0,32,576,472), 0), timer(0) {
+World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze(sf::FloatRect(0,32,576,472), 0), timer(0), swapCounter(0) {
 	std::unique_ptr<Entity_Background> background(new Entity_Background());
 	backgrounds.push_back(std::move(background));
 	
@@ -35,6 +35,17 @@ World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze
 	titleScreen = title.get();
 	titleScreen->setPosition(0,0);
 	entities.push_back(std::move(title));
+	
+	std::unique_ptr<Entity_EndGame> end(new Entity_EndGame());
+	endGame = end.get();
+	endGame->setPosition(1000,1000);
+	entities.push_back(std::move(end));
+	
+	if (!theme.openFromFile("Media/Sounds/audio.ogg")) {
+		std::cout << "No music for you, buddy.";
+	}
+	theme.play();
+	theme.setLoop(true);
 }
 
 void World::update(sf::Time delta) {
@@ -51,6 +62,10 @@ void World::update(sf::Time delta) {
 		monster->update(delta);
 		if (monster->getPosition().x < - 50) {
 			resetMonster(*monster);
+		} else if (playerChar->wasReset()) {
+			resetMonster(*monster);
+			bossMonster->resetTransparency();
+			playerChar->doneReset();
 		}
 	}
 	bossMonster->animate();
@@ -75,6 +90,7 @@ void World::input(Command* command) {
 	checkCollision();
 	command->execute(*playerChar);
 	command->execute(*titleScreen);
+	command->execute(*endGame);
 }
 
 void World::initMaze(unsigned int index) {
@@ -115,7 +131,15 @@ void World::initMonsters() {
 
 void World::resetMonster(Entity_Character& monster) {
 	monster.setPosition(randomNumber(850, 950), randomNumber(32, 576));
-	monster.setDirection(monster.getDirection().x-8, monster.getDirection().y);
+	monster.setDirection(monster.getDirection().x-20, monster.getDirection().y);
+}
+
+void World::banMonsters() {
+	for (auto& monster : monsters) {
+		if (monster->getPosition().x != 567 && monster->getPosition().y != 180) {
+			monster->setPosition(1000, 1000);
+		}
+	}
 }
 
 void World::moveButton() {
@@ -127,8 +151,9 @@ void World::checkCollision() {
 		playerChar->swapAppearance(1);
 	}
 	if (playerChar->borders().intersects(fireButton->borders())) {
-		if (bossMonster->addTransparency(5) >= 256) {
-			std::cout << "You won!" << std::endl;
+		if (bossMonster->addTransparency(8) <= 25) {
+			endGame->setWinner(true);
+			banMonsters();
 		}
 	}
 	if (playerChar->getPosition().x < 32) {
@@ -143,6 +168,12 @@ void World::checkCollision() {
 	for (auto& monster : monsters) {
 		if (playerChar->borders().intersects(monster->borders())) {
 			playerChar->swapAppearance(0);
+			swapCounter++;
+			if (swapCounter == 12) {
+				endGame->setWinner(false);
+				playerChar->reset();
+				swapCounter = 0;
+			}
 		}
 	}
 }

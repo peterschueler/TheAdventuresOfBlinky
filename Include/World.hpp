@@ -2,6 +2,7 @@
 #define WORLD_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <vector>
 
@@ -22,6 +23,7 @@ private:
 	void initTrees();
 	void initMonsters();
 	void resetMonster(Entity_Character& monster);
+	void banMonsters();
 	void moveButton();
 	void checkCollision();
 
@@ -33,16 +35,21 @@ private:
 	std::vector<std::unique_ptr<Entity_Character> > monsters;
 	std::vector<std::unique_ptr<Entity> > mazeAndWalls;
 	
+	sf::Music theme;
+	
 	Maze currentMaze;
 	Entity_Character* playerChar;
 	Entity_Character* bossMonster;
 	
 	Entity_Titlescreen *titleScreen;
+	Entity_EndGame *endGame;
 	
 	Entity_Object* fireButton;
 	Entity_Object* swapButton;
-	
+
 	float timer;
+	
+	int swapCounter;
 };
 
 #endif
