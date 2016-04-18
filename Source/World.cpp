@@ -5,39 +5,39 @@
 #include <cstdlib>
 
 World::World(sf::RenderWindow& window) : window(window), entities(), currentMaze(sf::FloatRect(0,32,576,472), 0), timer(0), swapCounter(0) {
-	std::unique_ptr<Entity_Background> background(new Entity_Background());
+	Entity_Background* background(new Entity_Background());
 	backgrounds.push_back(std::move(background));
 	
 	initTrees();
 	initMaze(0);
 	
-	std::unique_ptr<Entity_Object> button(new Entity_Object(Entity_Object::Type::button_fire));
-	fireButton = button.get();
+	Entity_Object* button(new Entity_Object(Entity_Object::Type::button_fire));
+	fireButton = button;
 	fireButton->setPosition(900, 1000);
 	fireButton->setScale(3.f, 3.f);
 	entities.push_back(std::move(button));
 	
-	std::unique_ptr<Entity_Object> sButton(new Entity_Object(Entity_Object::Type::button_swap));
-	swapButton = sButton.get();
+	Entity_Object* sButton(new Entity_Object(Entity_Object::Type::button_swap));
+	swapButton = sButton;
 	swapButton->setPosition(536, 64);
 	swapButton->setScale(2.f, 2.f);
 	entities.push_back(std::move(sButton));
 	
-	std::unique_ptr<Entity_Character> player(new Entity_Character(Entity_Character::Type::player));
-	playerChar = player.get();
+	Entity_Character* player(new Entity_Character(Entity_Character::Type::player));
+	playerChar = player;
 	playerChar->setPosition(32,470);
 	playerChar->setScale(2.f, 2.f);
 	entities.push_back(std::move(player));
 	
 	initMonsters();
 	
-	std::unique_ptr<Entity_Titlescreen> title(new Entity_Titlescreen());
-	titleScreen = title.get();
+	Entity_Titlescreen* title(new Entity_Titlescreen());
+	titleScreen = title;
 	titleScreen->setPosition(0,0);
 	entities.push_back(std::move(title));
 	
-	std::unique_ptr<Entity_EndGame> end(new Entity_EndGame());
-	endGame = end.get();
+	Entity_EndGame* end(new Entity_EndGame());
+	endGame = end;
 	endGame->setPosition(1000,1000);
 	entities.push_back(std::move(end));
 	
@@ -103,7 +103,7 @@ void World::initMaze(unsigned int index) {
 void World::initTrees() {
 	int shift_x = 32;
 	for (int i = 0; i < 13; i++) {
-		std::unique_ptr<Entity_Object> tree(new Entity_Object(Entity_Object::Type::tree));
+		Entity_Object* tree(new Entity_Object(Entity_Object::Type::tree));
 		tree->setPosition(shift_x+i*32, 472);
 		entities.push_back(std::move(tree));
 	}
@@ -116,14 +116,14 @@ int randomNumber(unsigned int min, unsigned int max) {
 void World::initMonsters() {
 	// six floaters and one big one.
 	for (int i = 0; i < 8; i++) {
-		std::unique_ptr<Entity_Character> monster(new Entity_Character(Entity_Character::Type::monster));
+		Entity_Character* monster(new Entity_Character(Entity_Character::Type::monster));
 		monster->setPosition(randomNumber(850, 1150)+64, randomNumber(32, 576));
 		monster->setScale(2.f, 2.f);
 		monsters.push_back(std::move(monster));
 	}
 	
-	std::unique_ptr<Entity_Character> monster(new Entity_Character(Entity_Character::Type::monster));
-	bossMonster = monster.get();
+	Entity_Character* monster(new Entity_Character(Entity_Character::Type::monster));
+	bossMonster = monster;
 	monster->setPosition(567,180);
 	monster->setScale(4.f, 4.f);
 	monsters.push_back(std::move(monster));

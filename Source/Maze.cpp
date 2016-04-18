@@ -6,28 +6,28 @@ Maze::Maze(sf::FloatRect size, unsigned int index) : index(index), size(size) {
 	setup();
 }
 
-std::vector<std::unique_ptr<Entity_Maze_Tile> > Maze::getTiles() {
+std::vector<Entity_Maze_Tile*> Maze::getTiles() {
 	return std::move(tiles);
 }
 
 void Maze::setup() {	
 	unsigned int x_position; 
 	for (int i = 0; i < 25; i++) {
-		std::unique_ptr<Entity_Maze_Tile> upper(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
+		Entity_Maze_Tile* upper(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
 		upper->setPosition(i*32, 0);
 		tiles.push_back(std::move(upper));
 		
-		std::unique_ptr<Entity_Maze_Tile> lower(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
+		Entity_Maze_Tile* lower(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
 		lower->setPosition(i*32, 568);
 		tiles.push_back(std::move(lower));
 	}
 	unsigned int y_position;
 	for (int i = 0; i < 19; i++) {
-		std::unique_ptr<Entity_Maze_Tile> left(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
+		Entity_Maze_Tile* left(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
 		left->setPosition(0, i*32);
 		tiles.push_back(std::move(left));
 		
-		std::unique_ptr<Entity_Maze_Tile> right(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
+		Entity_Maze_Tile* right(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::wall, false)));
 		right->setPosition(768, i*32);
 		tiles.push_back(std::move(right));
 	}
@@ -42,7 +42,7 @@ void Maze::setup() {
 	unsigned int third_Corner_y;
 	for (int i = 0; i < 22; i++) {
 		float shift = (i*64);
-		std::unique_ptr<Entity_Maze_Tile> tile(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::maze_straight_01, false)));
+		Entity_Maze_Tile* tile(new Entity_Maze_Tile(Entity_Maze_Tile::Type(Entity_Maze_Tile::maze_straight_01, false)));
 		tile->setScale(2.f, 2.f);
 		switch (i) {
 			case 0:

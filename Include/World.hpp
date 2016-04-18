@@ -30,10 +30,10 @@ private:
 private:
 	sf::RenderWindow& window;
 	
-	std::vector<std::unique_ptr<Entity_Background> > backgrounds;
-	std::vector<std::unique_ptr<Entity> > entities;
-	std::vector<std::unique_ptr<Entity_Character> > monsters;
-	std::vector<std::unique_ptr<Entity> > mazeAndWalls;
+	std::vector<Entity_Background*> backgrounds;
+	std::vector<Entity*> entities;
+	std::vector<Entity_Character*> monsters;
+	std::vector<Entity*> mazeAndWalls;
 	
 	sf::Music theme;
 	
