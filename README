@@ -1,0 +1,8 @@
+### The Adventures of Blinky, the Square-Shaped Round-Thing
+
+## REQUIREMENTS:
+- sfml
+- cmake
+
+It should work on OSX. I haven't tested it on Linux yet. I'm working on the windows port as fast as humanly possible.
+
