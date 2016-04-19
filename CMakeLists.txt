@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.4.3)
 
 if (NOT_CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
@@ -22,7 +22,7 @@ add_executable(${EXECUTABLE_NAME} Source/Main.cpp Source/Game.cpp Source/World.c
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
